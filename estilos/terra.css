@@ -1,0 +1,588 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    color: #172b18;
+
+    background-image:
+        linear-gradient(
+            rgba(100, 150, 70, 0.35),
+            rgba(35, 75, 35, 0.68)
+        ),
+        url("../imagens/terra/fundo.jpg");
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.cabecalho {
+    background: rgba(45, 95, 45, 0.97);
+    color: #e7f5d5;
+    padding: 20px 25px;
+
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.4);
+}
+
+.titulo {
+    text-align: center;
+}
+
+.titulo h1 {
+    font-size: 38px;
+    margin-bottom: 5px;
+}
+
+.titulo h2 {
+    font-size: 25px;
+    color: #c9e89c;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.menu a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 25px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.menu a:hover {
+    background-color: #6a9f3d;
+    transform: translateY(-3px);
+}
+
+.hero {
+    min-height: 650px;
+    width: 100%;
+    padding: 70px 10%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(220, 235, 190, 0.96),
+            rgba(150, 190, 100, 0.55),
+            rgba(255, 255, 255, 0.08)
+        );
+}
+
+.hero-texto {
+    flex: 1;
+    max-width: 650px;
+}
+
+.hero-texto span,
+.subtitulo {
+    color: #39752d;
+    font-weight: bold;
+    letter-spacing: 3px;
+    font-size: 15px;
+}
+
+.hero-texto h1 {
+    color: #285522;
+    font-size: 70px;
+    line-height: 1;
+    margin: 20px 0;
+}
+
+.hero-texto p {
+    font-size: 21px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.hero-imagem {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-imagem img {
+    width: 100%;
+    max-width: 450px;
+    height: 500px;
+    object-fit: cover;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 10px 30px rgba(25, 60, 20, 0.5);
+
+    border: 4px solid rgba(190, 220, 130, 0.85);
+
+    transition: 0.4s;
+}
+
+.hero-imagem img:hover {
+    transform: scale(1.03);
+}
+
+.botao,
+.botao-final {
+    display: inline-block;
+    text-decoration: none;
+
+    background: #4d852f;
+    color: white;
+
+    padding: 14px 28px;
+    border-radius: 12px;
+
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.botao:hover,
+.botao-final:hover {
+    background: #285522;
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 8px 20px rgba(55, 110, 35, 0.4);
+}
+
+.introducao,
+.desafios {
+    width: 90%;
+    max-width: 1250px;
+
+    margin: 70px auto;
+    padding: 50px;
+
+    border-radius: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 60px;
+
+    background: rgba(245, 250, 235, 0.95);
+
+    box-shadow:
+        0 15px 35px rgba(30, 65, 25, 0.25);
+}
+
+.texto {
+    flex: 1;
+}
+
+.texto h2,
+.destaque-texto h2 {
+    color: #39752d;
+
+    font-size: 38px;
+    margin: 12px 0 25px;
+}
+
+.texto p,
+.destaque-texto > p {
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 18px;
+}
+
+.imagem {
+    flex: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagem img {
+    width: 100%;
+    max-width: 500px;
+    max-height: 450px;
+
+    object-fit: cover;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 10px 25px rgba(30, 65, 25, 0.4);
+
+    transition: 0.4s;
+
+    border: 3px solid #82a94b;
+}
+
+.imagem img:hover {
+    transform: scale(1.03);
+}
+
+.destaque {
+    width: 100%;
+    padding: 80px 10%;
+
+    display: flex;
+    align-items: center;
+    gap: 70px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(35, 75, 30, 0.99),
+            rgba(65, 115, 40, 0.96),
+            rgba(25, 55, 25, 0.99)
+        );
+
+    color: white;
+}
+
+.destaque-imagem {
+    flex: 1;
+}
+
+.destaque-imagem img {
+    width: 100%;
+    max-width: 600px;
+    height: 450px;
+
+    object-fit: cover;
+
+    border-radius: 25px;
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.5);
+
+    border: 4px solid rgba(175, 210, 100, 0.85);
+}
+
+.destaque-texto {
+    flex: 1;
+}
+
+.destaque-texto .subtitulo {
+    color: #d8f2a8;
+}
+
+.destaque-texto h2 {
+    color: #f0f8d8;
+}
+
+.destaque-texto > p {
+    color: white;
+}
+
+.mini-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.mini-card {
+    padding: 20px;
+    border-radius: 15px;
+
+    background:
+        rgba(170, 205, 100, 0.15);
+
+    border:
+        1px solid rgba(190, 225, 130, 0.4);
+
+    transition: 0.3s;
+}
+
+.mini-card:hover {
+    transform: translateY(-5px);
+
+    background:
+        rgba(180, 215, 110, 0.28);
+}
+
+.mini-card h3 {
+    margin-bottom: 10px;
+
+    font-size: 20px;
+    color: #d8f2a8;
+}
+
+.mini-card p {
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.variacoes {
+    width: 90%;
+    max-width: 1200px;
+
+    margin: 70px auto;
+    padding: 50px;
+
+    text-align: center;
+
+    border-radius: 30px;
+
+    background:
+        rgba(245, 250, 235, 0.96);
+
+    box-shadow:
+        0 15px 35px rgba(30, 65, 25, 0.25);
+}
+
+.variacoes .texto {
+    max-width: 800px;
+    margin: auto;
+}
+
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    margin-top: 35px;
+}
+
+
+.card {
+    padding: 30px 20px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(225, 240, 190, 0.96),
+            rgba(175, 205, 125, 0.82)
+        );
+
+    border:
+        1px solid #82a94b;
+
+    box-shadow:
+        0 8px 20px rgba(50, 100, 30, 0.15);
+
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-7px);
+
+    box-shadow:
+        0 15px 30px rgba(50, 100, 30, 0.28);
+}
+
+.icone {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.card h3 {
+    color: #39752d;
+
+    font-size: 24px;
+    margin-bottom: 12px;
+}
+
+.card p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.conclusao {
+    width: 90%;
+    max-width: 1100px;
+
+    margin: 70px auto;
+    padding: 60px;
+
+    text-align: center;
+
+    border-radius: 30px;
+
+    background:
+        rgba(245, 250, 235, 0.97);
+
+    box-shadow:
+        0 15px 35px rgba(30, 65, 25, 0.25);
+}
+
+.conclusao .texto {
+    max-width: 950px;
+    margin: auto;
+}
+
+.conclusao h2 {
+    color: #39752d;
+
+    font-size: 42px;
+    margin: 15px 0 25px;
+}
+
+.conclusao p {
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 18px;
+}
+
+.frase-final {
+    color: #4d852f;
+
+    font-size: 22px !important;
+    font-weight: bold;
+
+    margin: 35px 0 !important;
+}
+
+.rodape {
+    margin-top: 80px;
+    padding: 45px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(25, 55, 25, 0.99),
+            rgba(45, 95, 40, 0.99)
+        );
+
+    color: white;
+    text-align: center;
+
+    border-top: 4px solid #9fbd55;
+}
+
+.rodape h2 {
+    font-size: 28px;
+    margin-bottom: 12px;
+
+    color: #d8f2a8;
+}
+
+.rodape p {
+    margin: 8px;
+    font-size: 16px;
+}
+
+@media (max-width: 900px) {
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 60px 6%;
+    }
+
+    .hero-texto h1 {
+        font-size: 52px;
+    }
+
+    .hero-imagem img {
+        max-width: 350px;
+    }
+
+    .introducao,
+    .desafios {
+        flex-direction: column;
+        width: 92%;
+        padding: 35px;
+    }
+
+    .destaque {
+        flex-direction: column;
+        padding: 60px 6%;
+    }
+
+    .mini-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .variacoes {
+        width: 92%;
+        padding: 35px;
+    }
+
+    .conclusao {
+        width: 92%;
+        padding: 35px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .titulo h1 {
+        font-size: 30px;
+    }
+
+    .titulo h2 {
+        font-size: 21px;
+    }
+
+    .menu {
+        gap: 5px;
+    }
+
+    .menu a {
+        font-size: 15px;
+        padding: 9px 15px;
+    }
+
+    .hero {
+        min-height: 550px;
+        padding: 45px 5%;
+    }
+
+    .hero-texto h1 {
+        font-size: 42px;
+    }
+
+    .hero-texto p {
+        font-size: 18px;
+    }
+
+    .introducao,
+    .desafios {
+        padding: 25px;
+        margin: 40px auto;
+    }
+
+    .texto h2,
+    .destaque-texto h2 {
+        font-size: 30px;
+    }
+
+    .texto p,
+    .destaque-texto > p {
+        font-size: 16px;
+    }
+
+    .conclusao h2 {
+        font-size: 32px;
+    }
+
+    .conclusao {
+        padding: 30px 20px;
+    }
+}

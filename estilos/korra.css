@@ -1,0 +1,619 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    color: #17202a;
+    background-image:
+        linear-gradient(
+            rgba(200, 240, 250, 0.35),
+            rgba(180, 225, 240, 0.65)
+        ),
+        url("../imagens/Korra/The\ Legend\ of\ Korra.png.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+body.bloqueado {
+    overflow: hidden;
+}
+
+#intro-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: black;
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 1s ease, visibility 1s ease;
+}
+
+#video-abertura {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+#intro-video::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.30);
+    z-index: 1;
+}
+
+.intro-conteudo {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 120px 20px 50px;
+    text-align: center;
+    color: white;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(0, 0, 0, 0.08) 25%,
+        rgba(0, 0, 0, 0.35) 55%,
+        rgba(0, 0, 0, 0.9) 100%
+    );
+    z-index: 2;
+}
+
+.intro-conteudo h1 {
+    font-size: 45px;
+    letter-spacing: 5px;
+    text-shadow: 0 4px 15px black;
+    margin-bottom: 10px;
+}
+
+.intro-conteudo p {
+    font-size: 20px;
+    margin: 10px 0 25px;
+    text-shadow: 0 2px 8px black;
+}
+
+#iniciar-video,
+#pular-video {
+    padding: 13px 25px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin: 5px;
+}
+
+#iniciar-video {
+    border: none;
+    background: white;
+    color: #087f9c;
+}
+
+#pular-video {
+    border: 2px solid white;
+    background: rgba(255, 255, 255, 0.12);
+    color: white;
+}
+
+#iniciar-video:hover,
+#pular-video:hover {
+    transform: translateY(-3px);
+}
+
+#iniciar-video:hover {
+    background: #087f9c;
+    color: white;
+}
+
+#pular-video:hover {
+    background: white;
+    color: #087f9c;
+}
+
+#intro-video.fechar {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.cabecalho {
+    background: rgba(52, 166, 190, 0.95);
+    color: white;
+    padding: 20px 25px;
+    box-shadow: 0 5px 20px rgba(0, 50, 70, 0.25);
+}
+
+.tiulo1 {
+    text-align: center;
+}
+
+.tiulo1 h1 {
+    font-size: 38px;
+    margin-bottom: 5px;
+}
+
+.tiulo1 h2 {
+    font-size: 25px;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.menu a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px 25px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.menu a:hover {
+    background-color: #087f9c;
+    transform: translateY(-3px);
+}
+
+.hero {
+    min-height: 650px;
+    width: 100%;
+    padding: 70px 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    background: linear-gradient(
+        90deg,
+        rgba(190, 235, 245, 0.96),
+        rgba(190, 235, 245, 0.55),
+        rgba(255, 255, 255, 0.1)
+    );
+}
+
+.hero-texto {
+    flex: 1;
+    max-width: 650px;
+}
+
+.hero-texto span,
+.subtitulo {
+    color: #087f9c;
+    font-weight: bold;
+    letter-spacing: 3px;
+    font-size: 15px;
+}
+
+.hero-texto h1 {
+    color: #07566b;
+    font-size: 70px;
+    line-height: 1;
+    margin: 20px 0;
+}
+
+.hero-texto p {
+    font-size: 21px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.hero-imagem {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-imagem img {
+    width: 100%;
+    max-width: 450px;
+    max-height: 550px;
+    object-fit: cover;
+    border-radius: 30px;
+    box-shadow: 0 20px 40px rgba(0, 70, 100, 0.35);
+}
+
+.botao,
+.botao-final {
+    display: inline-block;
+    text-decoration: none;
+    background: #087f9c;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.botao:hover,
+.botao-final:hover {
+    background: #07566b;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(8, 127, 156, 0.35);
+}
+
+.introducao,
+.desafios,
+.legado {
+    width: 90%;
+    max-width: 1250px;
+    margin: 70px auto;
+    padding: 50px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 60px;
+    background: rgba(255, 255, 255, 0.93);
+    box-shadow: 0 15px 35px rgba(0, 50, 70, 0.2);
+}
+
+.texto {
+    flex: 1;
+}
+
+.texto h2,
+.destaque-texto h2 {
+    color: #087f9c;
+    font-size: 38px;
+    margin: 12px 0 25px;
+}
+
+.texto p,
+.destaque-texto > p {
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 18px;
+}
+
+.imagem1,
+.imagem {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagem1 img,
+.imagem img {
+    width: 100%;
+    max-width: 500px;
+    max-height: 450px;
+    object-fit: cover;
+    border-radius: 25px;
+    box-shadow: 0 10px 25px rgba(0, 50, 70, 0.3);
+    transition: 0.4s;
+}
+
+.imagem1 img:hover,
+.imagem img:hover {
+    transform: scale(1.03);
+}
+
+#imagem1 {
+    width: 300px;
+    height: 400px;
+    object-fit: cover;
+}
+
+.destaque {
+    width: 100%;
+    padding: 80px 10%;
+    display: flex;
+    align-items: center;
+    gap: 70px;
+    background: rgba(8, 127, 156, 0.93);
+    color: white;
+}
+
+.destaque-imagem {
+    flex: 1;
+}
+
+.destaque-imagem img {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 25px;
+    box-shadow: 0 15px 30px rgba(0, 40, 60, 0.4);
+}
+
+.destaque-texto {
+    flex: 1;
+}
+
+.destaque-texto .subtitulo {
+    color: #dffaff;
+}
+
+.destaque-texto h2 {
+    color: white;
+}
+
+.destaque-texto > p {
+    color: white;
+}
+
+.mini-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.mini-card {
+    padding: 20px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    transition: 0.3s;
+}
+
+.mini-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.mini-card h3 {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.mini-card p {
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.conclusao {
+    width: 90%;
+    max-width: 1100px;
+    margin: 70px auto;
+    padding: 60px;
+    text-align: center;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.94);
+    box-shadow: 0 15px 35px rgba(0, 50, 70, 0.2);
+}
+
+.conclusao .texto {
+    max-width: 950px;
+    margin: auto;
+}
+
+.conclusao h2 {
+    color: #087f9c;
+    font-size: 42px;
+    margin: 15px 0 25px;
+}
+
+.conclusao p {
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 18px;
+}
+
+.frase-final {
+    color: #087f9c;
+    font-size: 22px !important;
+    font-weight: bold;
+    margin: 35px 0 !important;
+}
+
+.rodape {
+    margin-top: 80px;
+    padding: 45px 20px;
+    background-color: rgba(8, 127, 156, 0.95);
+    color: white;
+    text-align: center;
+}
+
+.rodape h2 {
+    font-size: 28px;
+    margin-bottom: 12px;
+}
+
+.rodape p {
+    margin: 8px;
+    font-size: 16px;
+}
+
+@media (max-width: 900px) {
+
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 60px 6%;
+    }
+
+    .hero-texto h1 {
+        font-size: 52px;
+    }
+
+    .hero-imagem img {
+        max-width: 350px;
+    }
+
+    .introducao,
+    .desafios,
+    .legado {
+        flex-direction: column;
+        width: 92%;
+        padding: 35px;
+    }
+
+    .destaque {
+        flex-direction: column;
+        padding: 60px 6%;
+    }
+
+    .mini-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .imagem1 img,
+    .imagem img {
+        max-width: 100%;
+    }
+
+    .conclusao {
+        width: 92%;
+        padding: 35px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    body {
+        background-attachment: scroll;
+        overflow-x: hidden;
+    }
+
+    #intro-video {
+        width: 100%;
+        height: 100dvh;
+    }
+
+    #video-abertura {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .intro-conteudo {
+        padding: 80px 15px 30px;
+    }
+
+    .intro-conteudo h1 {
+        font-size: 28px;
+        letter-spacing: 2px;
+    }
+
+    .intro-conteudo p {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    #iniciar-video,
+    #pular-video {
+        width: 90%;
+        max-width: 300px;
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    .tiulo1 h1 {
+        font-size: 30px;
+    }
+
+    .tiulo1 h2 {
+        font-size: 21px;
+    }
+
+    .menu {
+        gap: 5px;
+    }
+
+    .menu a {
+        font-size: 15px;
+        padding: 9px 15px;
+    }
+
+    .hero {
+        min-height: 550px;
+        padding: 45px 5%;
+    }
+
+    .hero-texto h1 {
+        font-size: 42px;
+    }
+
+    .hero-texto p {
+        font-size: 18px;
+    }
+
+    .introducao,
+    .desafios,
+    .legado {
+        width: 92%;
+        padding: 25px;
+        margin: 40px auto;
+    }
+
+    .texto h2,
+    .destaque-texto h2 {
+        font-size: 30px;
+    }
+
+    .texto p,
+    .destaque-texto > p {
+        font-size: 16px;
+    }
+
+    #imagem1 {
+        width: 100%;
+        max-width: 300px;
+        height: 380px;
+    }
+
+    .destaque {
+        padding: 50px 5%;
+        gap: 35px;
+    }
+
+    .conclusao h2 {
+        font-size: 32px;
+    }
+
+    .conclusao {
+        width: 92%;
+        padding: 30px 20px;
+    }
+
+    .conclusao p {
+        font-size: 16px;
+    }
+
+    .frase-final {
+        font-size: 19px !important;
+    }
+
+    .rodape {
+        padding: 35px 15px;
+    }
+
+    .rodape h2 {
+        font-size: 24px;
+    }
+
+    .rodape p {
+        font-size: 14px;
+    }
+}

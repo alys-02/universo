@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Universo Avatar - A Lenda de Korra</title>
+
+    <link rel="stylesheet" href="../series_estilos/lenda_korra.css">
+
+</head>
+
+<body>
+
+    <header>
+
+        <h1>Universo Avatar Series</h1>
+
+        <p>A Lenda de Korra</p>
+
+    </header>
+
+    <nav>
+
+        <a href="../series/inicio_catalago.html">Início</a>
+
+        <a href="../paginas/aang.html">Aang</a>
+
+        <a href="../paginas/korra.html">Korra</a>
+
+        <a href="../paginas/pavi.html">Pavi</a>
+
+    </nav>
+
+    <main>
+
+        <section id="temporadas">
+
+            <h2>Temporadas</h2>
+
+            <div class="botoes-temporadas">
+
+                <button onclick="mostrarTemporada(1)">
+                    Temporada 1
+                </button>
+
+                <button onclick="mostrarTemporada(2)">
+                    Temporada 2
+                </button>
+
+                <button onclick="mostrarTemporada(3)">
+                    Temporada 3
+                </button>
+
+                <button onclick="mostrarTemporada(4)">
+                    Temporada 4
+                </button>
+
+            </div>
+
+        </section>
+
+        <section id="episodios">
+
+            <h2 id="titulo-temporada">
+                Temporada
+            </h2>
+
+            <div
+                id="lista-episodios"
+                class="lista-episodios">
+            </div>
+
+            <button
+                class="botao-voltar"
+                onclick="voltarTemporadas()">
+
+                ← Voltar para temporadas
+
+            </button>
+
+        </section>
+
+        <section id="player">
+
+            <h2 id="titulo-player">
+                Episódio
+            </h2>
+
+            <div class="player-video">
+
+                <iframe
+                    id="video"
+                    src=""
+                    allow="autoplay; encrypted-media; picture-in-picture"
+                    allowfullscreen
+                    frameborder="0"
+                    scrolling="no">
+                </iframe>
+
+            </div>
+
+            <div class="controles-episodio">
+
+                <button
+                    id="botao-anterior"
+                    onclick="episodioAnterior()">
+
+                    ← Episódio anterior
+
+                </button>
+
+                <button
+                    class="botao-voltar"
+                    onclick="voltarEpisodios()">
+
+                    ← Voltar para episódios
+
+                </button>
+
+                <button
+                    id="botao-proximo"
+                    onclick="proximoEpisodio()">
+
+                    Próximo episódio →
+
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+
+        <h2>Universo Avatar</h2>
+
+        <p>
+            Um site dedicado ao universo de Avatar.
+        </p>
+
+        <p>
+            © 2026 Alysson Henrique.
+        </p>
+
+    </footer>
+
+    <script>
+
+        let temporadaAtual = 1;
+
+        let episodioAtual = 1;
+
+        let ultimoCarregamento = 0;
+
+        let videoAtual = "";
+
+        const intervaloMinimo = 10000;
+
+        const episodios = {
+
+            1: [
+
+                "1nFIdu0Tu4uEvStCs_wW4CnOMiOqqXwsR",
+
+                "1ODS7kdkycAltYGxtCT25RlApfij7YmSR",
+
+                "1JJoXZN5pSNy3mOgMItOm0jYIJPLugnj",
+
+                "1_nHTO36v-r5g31QBfOIRaIzWpzWxX3PW",
+
+                "1qnzU1jIdBNCTvuprrOIPC4MWgeLRP5R3",
+
+                "1wBG1M8QiTjgAJEk6Lh2u-CzcwhBzussb",
+
+                "1_wFyIVEgndjQ5bHggJWZx2WpHjvYxukb",
+
+                "1JaB667v4JDvemlAf-U7f8bZRt1mUXLvF",
+
+                "1pLSuktTPJQqsoLGTRuoh6GYbnjCG25Rb",
+
+                "1WRRNoBpP82O9neBBUitzCDGlWy1NPTpJ",
+
+                "1yGh19cffGoi0Xi2SOyey1iUEDjqdFUBq",
+
+                "1Kcbt0lSsUO8rs2ZNAJ_H0-enATrVhEjV"
+
+            ],
+
+            2: [
+
+                "1iOnO-YXndt7ZCm_rTx6pX1cC2ZPYpBen",
+
+                "1sSe_EKsVSh-pNIyxBiDhCAUdBxsPK2-K",
+
+                "1VDf8x7yuiHj5qwR6Pelbr5SlCExNPXvZ",
+
+                "11F69MC6JIjzdhU7kYMGOrWyyqLFV0YHM",
+
+                "1M6C1vEJ4YhmAJAxNo6gvuv33dqpoBEmw",
+
+                "1FwMZja0qx5yzdGVAzc5vPaE5QrUnP53P",
+
+                "1-aTISTNLKAE0g4YaMuMoOXCOzPTFbS0s",
+
+                "1PqO--WfXK5MltliD-FJXO2gM5XOmX8mM",
+
+                "1o4dD0ma1DtvR5WCrujAxs-k1Ix1ovVbW",
+
+                "1aRAko_dXscAJqxRm7fCiHKi0Vda5ONl9",
+
+                "1qHrydsZuYtp-qPie3Nyi4mn9rCxhjyu4",
+
+                "1YWzs-ZhBMpZCa3WF0a2M5vEvf3Mo1eoY",
+
+                "12eOTrTcQ2ubktW-_FvRMJefG0UaE1qJv",
+
+                "1hvbFJo62YnNCx6KeqgglkikCbXyiAo1N"
+
+            ],
+
+            3: [
+
+                "1LeK8VubNRtkNzfoEmMb6TLI_XP7SNRf-",
+
+                "1nYu2aO4ih4ZV8R5YUtSniMNVsgaW4HNT",
+
+                "1XV4hPMNiLoVs0NPutsJ8Ngg8RBsYk0a4",
+
+                "19D1ZSrSTFv8jU5L79EJ33CbSDqhRlYm5",
+
+                "1xsvfvsAUPiXzKVkHpOMaU_3Nf849hhoh",
+
+                "1t8e8VvxqZAGYcSSUE39iXuYOGH66J8rR",
+
+                "1CVY4x6TjOfRSRMzAB1zpSOYFOKxRd-MD",
+
+                "1JhXSj_Il5o0SKxjNWFFwChOqY9PjqJiO",
+
+                "1O9f0IDa5NqdLe9k7Pv4GRNquTTeVkFU4",
+
+                "1ULZ_oP44B-YYd4Wdesgr51xhCI-_E_Ir",
+
+                "1WitPWc8fgoBD-1NHZRon2e08gF40gyDy",
+
+                "1U7Z74ZS2Nj6EcKqoLPsQt5Wl3bsH2uF8",
+
+                "1ONkEHTN_O3fIg-fOk6N97YvQO8AFRwVa"
+
+            ],
+
+            4: [
+
+                "1Jpv7xkEqUD1pIrfw2BGx6w0V0omSEoPy",
+
+                "1QQtGFcAEVRP29nQVxJ8fqULveTRdRncx",
+
+                "1CTb9kDarN56BmmtNMo20rqRNop23CurW",
+
+                "1knNGhe7jP0Tr32gjUV-xgwwf2ZR3jk1J",
+
+                "13rcnbP0BmoKd60x8VsL-lGHz421P6BUR",
+
+                "16fFCIOFhr5ZqaXv4NAlTSkuTVo1_0t0d",
+
+                "1sQ-CCJbUUlg0XMyYUoNZzBm6Wmcfx07D",
+
+                "1hOxlz6ejyB_tVqIvz3lWkdDpt88ERTdo",
+
+                "1oMR0rWqOC9wv_dY29GMtNo_L4m6Hjq9u",
+
+                "1zu3H3Gg-VaitvQCUolSp8-2usrdU2nuz",
+
+                "1KYRnqRKuPXUQeHrJg8FJ2JNB2ERcYqzg",
+
+                "1BHpTf0oI4ow6RR6v_ScelGsNSpRLBucN",
+
+                "1HukNyuFNrGBmiL39A0cqSl_NY5PUqN7e"
+
+            ]
+
+        };
+
+        const nomesEpisodios = {
+
+            1: [
+
+                "Bem-vindo à Cidade República",
+
+                "Uma Folha ao Vento",
+
+                "A Revelação",
+
+                "A Voz na Noite",
+
+                "O Espírito da Competição",
+
+                "E o Vencedor É...",
+
+                "As Consequências",
+
+                "Quando os Extremos se Encontram",
+
+                "Do Passado",
+
+                "Mudando as Marés",
+
+                "Esqueletos no Armário",
+
+                "Fim de Jogo"
+
+            ],
+
+            2: [
+
+                "Espírito Rebelde",
+
+                "As Luzes do Sul",
+
+                "Guerras Civis: Parte 1",
+
+                "Guerras Civis: Parte 2",
+
+                "Guardiões da Paz",
+
+                "A Picada",
+
+                "Começos: Parte 1",
+
+                "Começos: Parte 2",
+
+                "O Guia",
+
+                "Uma Nova Era Espiritual",
+
+                "Noite de Mil Estrelas",
+
+                "Convergência Harmônica",
+
+                "A Escuridão Cai",
+
+                "Luz na Escuridão"
+
+            ],
+
+            3: [
+
+                "Um Sopro de Ar Fresco",
+
+                "Renascimento",
+
+                "A Rainha da Terra",
+
+                "No Caminho do Perigo",
+
+                "O Clã do Metal",
+
+                "Velhas Feridas",
+
+                "Os Primeiros Dominadores de Ar",
+
+                "O Terror Interior",
+
+                "A Vigilância",
+
+                "Vida Longa à Rainha",
+
+                "O Ultimato",
+
+                "Entrando no Vazio",
+
+                "Veneno da Lótus Vermelha"
+
+            ],
+
+            4: [
+
+                "Depois de Todos Esses Anos",
+
+                "Korra Sozinha",
+
+                "A Coroação",
+
+                "O Chamado",
+
+                "Inimigo nos Portões",
+
+                "Batalha de Zaofu",
+
+                "Reencontro",
+
+                "Recordações",
+
+                "Além da Natureza Selvagem",
+
+                "Operação Beifong",
+
+                "O Plano de Kuvira",
+
+                "O Dia do Colosso",
+
+                "A Última Resistência"
+
+            ]
+
+        };
+
+        function podeCarregarVideo(url) {
+
+            const agora = Date.now();
+
+            if (
+                url === videoAtual &&
+                agora - ultimoCarregamento < intervaloMinimo
+            ) {
+
+                alert(
+                    "Aguarde alguns segundos antes de abrir este vídeo novamente."
+                );
+
+                return false;
+
+            }
+
+            ultimoCarregamento = agora;
+
+            videoAtual = url;
+
+            return true;
+
+        }
+
+        function mostrarTemporada(temporada) {
+
+            temporadaAtual = temporada;
+
+            episodioAtual = 1;
+
+            document.getElementById(
+                "temporadas"
+            ).style.display = "none";
+
+            document.getElementById(
+                "episodios"
+            ).style.display = "block";
+
+            document.getElementById(
+                "player"
+            ).style.display = "none";
+
+            document.getElementById(
+                "titulo-temporada"
+            ).textContent =
+                "📺 Temporada " + temporada;
+
+            const lista =
+                document.getElementById(
+                    "lista-episodios"
+                );
+
+            lista.innerHTML = "";
+
+            episodios[temporada].forEach(
+                function(id, indice) {
+
+                    const episodio =
+                        document.createElement("div");
+
+                    episodio.className =
+                        "episodio";
+
+                    episodio.innerHTML = `
+
+                        <div class="informacoes-episodio">
+
+                            <span>
+                                Episódio ${indice + 1}
+                            </span>
+
+                            <h3>
+                                ${nomesEpisodios[temporada][indice]}
+                            </h3>
+
+                        </div>
+
+                        <button>
+                            ▶ Assistir
+                        </button>
+
+                    `;
+
+                    episodio.onclick =
+                        function() {
+
+                            abrirEpisodio(
+                                indice + 1
+                            );
+
+                        };
+
+                    lista.appendChild(
+                        episodio
+                    );
+
+                }
+            );
+
+        }
+
+        function abrirEpisodio(numero) {
+
+            episodioAtual = numero;
+
+            const id =
+                episodios[temporadaAtual]
+                [numero - 1];
+
+            const urlVideo =
+                "https://drive.google.com/file/d/"
+                + id
+                + "/preview";
+
+            if (
+                !podeCarregarVideo(
+                    urlVideo
+                )
+            ) {
+
+                return;
+
+            }
+
+            document.getElementById(
+                "episodios"
+            ).style.display = "none";
+
+            document.getElementById(
+                "temporadas"
+            ).style.display = "none";
+
+            document.getElementById(
+                "player"
+            ).style.display = "block";
+
+            document.getElementById(
+                "titulo-player"
+            ).textContent =
+
+                "🎬 Temporada "
+                + temporadaAtual
+                + " - Episódio "
+                + numero
+                + " — "
+                + nomesEpisodios[
+                    temporadaAtual
+                ][numero - 1];
+
+            document.getElementById(
+                "video"
+            ).src = urlVideo;
+
+            atualizarBotoes();
+
+        }
+
+        function episodioAnterior() {
+
+            if (episodioAtual <= 1) {
+
+                return;
+
+            }
+
+            abrirEpisodio(
+                episodioAtual - 1
+            );
+
+        }
+
+        function proximoEpisodio() {
+
+            const total =
+                episodios[
+                    temporadaAtual
+                ].length;
+
+            if (episodioAtual >= total) {
+
+                return;
+
+            }
+
+            abrirEpisodio(
+                episodioAtual + 1
+            );
+
+        }
+
+        function atualizarBotoes() {
+
+            const botaoAnterior =
+                document.getElementById(
+                    "botao-anterior"
+                );
+
+            const botaoProximo =
+                document.getElementById(
+                    "botao-proximo"
+                );
+
+            const total =
+                episodios[
+                    temporadaAtual
+                ].length;
+
+            if (episodioAtual === 1) {
+
+                botaoAnterior.disabled = true;
+
+            } else {
+
+                botaoAnterior.disabled = false;
+
+            }
+
+            if (
+                episodioAtual === total
+            ) {
+
+                botaoProximo.disabled = true;
+
+            } else {
+
+                botaoProximo.disabled = false;
+
+            }
+
+        }
+
+        function voltarTemporadas() {
+
+            document.getElementById(
+                "episodios"
+            ).style.display = "none";
+
+            document.getElementById(
+                "player"
+            ).style.display = "none";
+
+            document.getElementById(
+                "temporadas"
+            ).style.display = "block";
+
+            document.getElementById(
+                "video"
+            ).src = "";
+
+            videoAtual = "";
+
+        }
+
+        function voltarEpisodios() {
+
+            document.getElementById(
+                "player"
+            ).style.display = "none";
+
+            document.getElementById(
+                "episodios"
+            ).style.display = "block";
+
+            document.getElementById(
+                "video"
+            ).src = "";
+
+            videoAtual = "";
+
+        }
+
+    </script>
+
+</body>
+
+</html>

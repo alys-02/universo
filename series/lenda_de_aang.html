@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Universo Avatar - Temporadas</title>
+
+    <link rel="stylesheet" href="../series_estilos/lenda_aang.css">
+
+</head>
+
+<body>
+
+
+<header>
+
+    <h1>Universo Avatar Series</h1>
+
+    <p>Lenda de Aang</p>
+
+</header>
+
+
+<nav>
+
+    <a href="../series/inicio_catalago.html">Início</a>
+
+    <a href="../paginas/aang.html">Aang</a>
+
+    <a href="../paginas/korra.html">Korra</a>
+
+    <a href="../paginas/pavi.html">Pavi</a>
+
+</nav>
+
+
+<main>
+
+
+    <!-- TEMPORADAS -->
+
+    <section id="temporadas">
+
+        <h2>Temporadas</h2>
+
+        <div class="botoes-temporadas">
+
+            <button onclick="mostrarTemporada(1)">
+                Temporada 1
+            </button>
+
+            <button onclick="mostrarTemporada(2)">
+                Temporada 2
+            </button>
+
+            <button onclick="mostrarTemporada(3)">
+                Temporada 3
+            </button>
+
+        </div>
+
+
+        <!-- FILME -->
+
+        <div class="filme">
+
+            <h2>🎬 Filme</h2>
+
+            <p>
+                Assista ao filme do Universo Avatar.
+            </p>
+
+            <button onclick="abrirFilme()">
+                ▶ Assistir Filme
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- EPISÓDIOS -->
+
+    <section id="episodios">
+
+        <h2 id="titulo-temporada">
+            Temporada
+        </h2>
+
+        <div
+            id="lista-episodios"
+            class="lista-episodios">
+        </div>
+
+
+        <button
+            class="botao-voltar"
+            onclick="voltarTemporadas()">
+
+            ← Voltar para temporadas
+
+        </button>
+
+    </section>
+
+
+    <!-- PLAYER -->
+
+    <section id="player">
+
+        <h2 id="titulo-player">
+            Episódio
+        </h2>
+
+
+        <div class="player-video">
+
+            <iframe
+                id="video"
+                src=""
+                allow="autoplay; encrypted-media; picture-in-picture"
+                allowfullscreen
+                frameborder="0"
+                scrolling="no">
+            </iframe>
+
+        </div>
+
+
+        <div class="controles-episodio">
+
+            <button
+                id="botao-anterior"
+                onclick="episodioAnterior()">
+
+                ← Episódio anterior
+
+            </button>
+
+
+            <button
+                class="botao-voltar"
+                onclick="voltarEpisodios()">
+
+                ← Episódios
+
+            </button>
+
+
+            <button
+                id="botao-proximo"
+                onclick="proximoEpisodio()">
+
+                Próximo episódio →
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<footer>
+
+    <h2>Universo Avatar</h2>
+
+    <p>
+        Um site dedicado ao universo de Avatar.
+    </p>
+
+    <p>
+        © 2026 Alysson Henrique.
+    </p>
+
+</footer>
+
+
+<script>
+
+let temporadaAtual = 1;
+
+let episodioAtual = 1;
+
+
+const nomesEpisodios = {
+
+    1: [
+
+        "O Garoto no Iceberg",
+        "O Retorno do Avatar",
+        "O Templo do Ar do Sul",
+        "Os Guerreiros de Kyoshi",
+        "O Rei de Omashu",
+        "Preso",
+        "Solstício de Inverno - Parte 1",
+        "Solstício de Inverno - Parte 2",
+        "O Pergaminho da Dobra de Água",
+        "Jato",
+        "A Grande Divisão",
+        "A Tempestade",
+        "O Espírito Azul",
+        "A Adivinha",
+        "Bato da Tribo da Água",
+        "O Desertor",
+        "O Templo do Ar do Norte",
+        "O Mestre da Dobra de Água",
+        "O Cerco do Norte - Parte 1",
+        "O Cerco do Norte - Parte 2"
+
+    ],
+
+
+    2: [
+
+        "O Estado Avatar",
+        "A Caverna dos Dois Amantes",
+        "Retorno a Omashu",
+        "O Pântano",
+        "O Dia do Avatar",
+        "A Bandida Cega",
+        "Zuko Sozinho",
+        "A Perseguição",
+        "Trabalho Amargo",
+        "A Biblioteca",
+        "O Deserto",
+        "A Passagem da Serpente",
+        "A Broca",
+        "A Cidade dos Muros e Segredos",
+        "As Aventuras de Ba Sing Se",
+        "Os Dias Perdidos de Appa",
+        "Lago Laogai",
+        "O Rei da Terra",
+        "O Guru",
+        "As Encruzilhadas do Destino"
+
+    ],
+
+
+    3: [
+
+        "O Despertar",
+        "A Faixa de Cabeça",
+        "A Pintora",
+        "O Mestre Sokka",
+        "A Praia",
+        "O Avatar e o Senhor do Fogo",
+        "A Fugitiva",
+        "A Marionetista",
+        "Pesadelos e Devaneios",
+        "O Dia do Sol Negro - Parte 1",
+        "O Dia do Sol Negro - Parte 2",
+        "O Templo do Ar do Oeste",
+        "Os Mestres do Fogo",
+        "A Rocha Fervente - Parte 1",
+        "A Rocha Fervente - Parte 2",
+        "Os Corredores de Combustão",
+        "Os Jogadores de Ember Island",
+        "O Cometa de Sozin - Parte 1",
+        "O Cometa de Sozin - Parte 2",
+        "O Cometa de Sozin - Parte 3",
+        "O Cometa de Sozin - Parte 4"
+
+    ]
+
+};
+
+
+/* MOSTRAR TEMPORADA */
+
+function mostrarTemporada(temporada) {
+
+    temporadaAtual = temporada;
+
+    episodioAtual = 1;
+
+
+    document.getElementById("temporadas").style.display = "none";
+
+    document.getElementById("episodios").style.display = "block";
+
+    document.getElementById("player").style.display = "none";
+
+
+    document.getElementById("titulo-temporada").textContent =
+        "📺 Temporada " + temporada;
+
+
+    const lista =
+        document.getElementById("lista-episodios");
+
+
+    lista.innerHTML = "";
+
+
+    const quantidade =
+        nomesEpisodios[temporada].length;
+
+
+    for (let i = 1; i <= quantidade; i++) {
+
+        const episodio =
+            document.createElement("div");
+
+
+        episodio.className = "episodio";
+
+
+        episodio.innerHTML = `
+
+            <div class="informacoes-episodio">
+
+                <span>
+                    Episódio ${i}
+                </span>
+
+                <h3>
+                    ${nomesEpisodios[temporada][i - 1]}
+                </h3>
+
+            </div>
+
+            <button>
+                ▶ Assistir
+            </button>
+
+        `;
+
+
+        episodio.onclick = function () {
+
+            abrirEpisodio(i);
+
+        };
+
+
+        lista.appendChild(episodio);
+
+    }
+
+}
+
+
+/* ABRIR EPISÓDIO */
+
+function abrirEpisodio(numero) {
+
+    episodioAtual = numero;
+
+
+    document.getElementById("temporadas").style.display = "none";
+
+    document.getElementById("episodios").style.display = "none";
+
+    document.getElementById("player").style.display = "block";
+
+
+    const titulo =
+        nomesEpisodios[temporadaAtual][numero - 1];
+
+
+    document.getElementById("titulo-player").textContent =
+
+        "🎬 Temporada " +
+        temporadaAtual +
+        " - Episódio " +
+        numero +
+        " — " +
+        titulo;
+
+
+    document.getElementById("video").src =
+
+        "https://myembed.biz/serie/246/" +
+        temporadaAtual +
+        "/" +
+        numero;
+
+
+    atualizarBotoes();
+
+}
+
+
+/* ABRIR FILME */
+
+function abrirFilme() {
+
+    document.getElementById("temporadas").style.display = "none";
+
+    document.getElementById("episodios").style.display = "none";
+
+    document.getElementById("player").style.display = "block";
+
+
+    document.getElementById("titulo-player").textContent =
+        "🎬 Filme";
+
+
+    document.getElementById("video").src =
+        "https://myembed.biz/filme/tt18259538";
+
+
+    document.getElementById("botao-anterior").style.display = "none";
+
+    document.getElementById("botao-proximo").style.display = "none";
+
+}
+
+
+/* EPISÓDIO ANTERIOR */
+
+function episodioAnterior() {
+
+    if (episodioAtual > 1) {
+
+        abrirEpisodio(episodioAtual - 1);
+
+    }
+
+}
+
+
+/* PRÓXIMO EPISÓDIO */
+
+function proximoEpisodio() {
+
+    const total =
+        nomesEpisodios[temporadaAtual].length;
+
+
+    if (episodioAtual < total) {
+
+        abrirEpisodio(episodioAtual + 1);
+
+    }
+
+}
+
+
+/* ATUALIZAR BOTÕES */
+
+function atualizarBotoes() {
+
+    const total =
+        nomesEpisodios[temporadaAtual].length;
+
+
+    document.getElementById("botao-anterior").disabled =
+        episodioAtual === 1;
+
+
+    document.getElementById("botao-proximo").disabled =
+        episodioAtual === total;
+
+
+    document.getElementById("botao-anterior").style.display =
+        "inline-block";
+
+
+    document.getElementById("botao-proximo").style.display =
+        "inline-block";
+
+}
+
+
+/* VOLTAR PARA TEMPORADAS */
+
+function voltarTemporadas() {
+
+    document.getElementById("episodios").style.display = "none";
+
+    document.getElementById("player").style.display = "none";
+
+    document.getElementById("temporadas").style.display = "block";
+
+    document.getElementById("video").src = "";
+
+}
+
+
+/* VOLTAR DOS EPISÓDIOS */
+
+function voltarEpisodios() {
+
+    document.getElementById("player").style.display = "none";
+
+    document.getElementById("episodios").style.display = "block";
+
+    document.getElementById("video").src = "";
+
+}
+
+</script>
+
+
+</body>
+
+</html>

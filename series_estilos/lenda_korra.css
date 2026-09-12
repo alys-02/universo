@@ -1,0 +1,493 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: white;
+    background-image:
+        linear-gradient(
+            rgba(20, 90, 150, 0.3),
+            rgba(0, 35, 80, 0.6)
+        ),
+        url("../imagens/wp1953292.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+header {
+    background: rgba(80, 150, 210, 0.92);
+    padding: 25px;
+    text-align: center;
+}
+
+header h1 {
+    color: #063f73;
+    font-size: 34px;
+    margin-bottom: 5px;
+}
+
+header p {
+    color: #063f73;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 80px;
+    background: rgba(70, 140, 200, 0.92);
+    padding: 15px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: bold;
+    padding: 9px 20px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    background: #063f73;
+    transform: translateY(-3px);
+}
+
+main {
+    width: 90%;
+    max-width: 900px;
+    margin: 45px auto;
+}
+
+#temporadas {
+    text-align: center;
+}
+
+#temporadas h2 {
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.botoes-temporadas {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.botoes-temporadas button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    background: white;
+    color: #075bbb;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.botoes-temporadas button:hover {
+    background: #075bbb;
+    color: white;
+    transform: translateY(-3px);
+}
+
+.filme {
+    margin-top: 30px;
+    padding: 25px;
+    background: rgba(10, 60, 110, 0.75);
+    border-radius: 15px;
+    text-align: center;
+}
+
+.filme h2 {
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+.filme p {
+    margin-bottom: 18px;
+    font-size: 16px;
+}
+
+.filme button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    background: white;
+    color: #075bbb;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.filme button:hover {
+    background: #075bbb;
+    color: white;
+    transform: translateY(-3px);
+}
+
+#episodios {
+    display: none;
+}
+
+#titulo-temporada {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.lista-episodios {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.episodio {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.95);
+    color: #075bbb;
+    padding: 15px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.episodio:hover {
+    background: #075bbb;
+    color: white;
+    transform: translateX(5px);
+}
+
+.informacoes-episodio {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+}
+
+.informacoes-episodio span {
+    font-size: 14px;
+}
+
+.informacoes-episodio h3 {
+    font-size: 18px;
+    overflow-wrap: break-word;
+}
+
+.episodio button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    background: #075bbb;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.episodio:hover button {
+    background: white;
+    color: #075bbb;
+}
+
+.botao-voltar {
+    padding: 11px 20px;
+    border: none;
+    border-radius: 8px;
+    background: white;
+    color: #075bbb;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.botao-voltar:hover {
+    background: #075bbb;
+    color: white;
+    transform: translateY(-2px);
+}
+
+#episodios > .botao-voltar {
+    display: block;
+    margin: 20px auto 0;
+}
+
+#player {
+    display: none;
+    width: 100%;
+    max-width: 100%;
+    padding: 20px;
+    text-align: center;
+    background: rgba(10, 60, 110, 0.75);
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+#titulo-player {
+    margin-bottom: 20px;
+    font-size: 24px;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.player-video {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 16 / 9;
+}
+
+#video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    max-width: 100%;
+    border: none;
+    border-radius: 10px;
+    background: black;
+}
+
+.controles-episodio {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.controles-episodio button {
+    padding: 11px 20px;
+    border: none;
+    border-radius: 8px;
+    background: white;
+    color: #075bbb;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.controles-episodio button:hover {
+    background: #075bbb;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.controles-episodio button:disabled {
+    background: #777;
+    color: #ccc;
+    cursor: not-allowed;
+    transform: none;
+}
+
+footer {
+    margin-top: 40px;
+    padding: 25px;
+    text-align: center;
+    background: rgba(3, 96, 218, 0.573);
+    color: white;
+}
+
+footer h2 {
+    margin-bottom: 8px;
+}
+
+footer p {
+    margin: 5px;
+}
+
+@media (max-width: 600px) {
+
+    html,
+    body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    body {
+        background-attachment: scroll;
+    }
+
+    header {
+        padding: 20px 15px;
+    }
+
+    header h1 {
+        font-size: 30px;
+        line-height: 1.2;
+    }
+
+    header p {
+        font-size: 19px;
+    }
+
+    nav {
+        gap: 10px;
+        padding: 12px 8px;
+    }
+
+    nav a {
+        font-size: 15px;
+        padding: 8px 14px;
+    }
+
+    main {
+        width: 100%;
+        max-width: 100%;
+        margin: 30px auto;
+        padding: 0 10px;
+    }
+
+    #temporadas {
+        width: 100%;
+        padding: 20px;
+    }
+
+    #temporadas h2 {
+        font-size: 25px;
+    }
+
+    .botoes-temporadas {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .botoes-temporadas button {
+        width: 100%;
+    }
+
+    .episodio {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .informacoes-episodio {
+        width: 100%;
+    }
+
+    .informacoes-episodio h3 {
+        font-size: 17px;
+        line-height: 1.3;
+    }
+
+    .episodio button {
+        width: 100%;
+    }
+
+    .filme {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .filme button {
+        width: 100%;
+    }
+
+    #player {
+        width: 100%;
+        max-width: 100%;
+        padding: 12px;
+        border-radius: 15px;
+    }
+
+    #titulo-player {
+        font-size: 20px;
+        line-height: 1.3;
+        margin-bottom: 15px;
+    }
+
+    .player-video {
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+    }
+
+    #video {
+        display: block;
+        width: 100%;
+        height: 100%;
+        min-width: 0;
+        max-width: 100%;
+        border-radius: 8px;
+    }
+
+    .controles-episodio {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .controles-episodio button {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    footer {
+        padding: 25px 15px;
+    }
+
+    footer h2 {
+        font-size: 24px;
+    }
+
+    footer p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 400px) {
+
+    main {
+        padding: 0 8px;
+    }
+
+    #player {
+        padding: 10px;
+    }
+
+    #titulo-player {
+        font-size: 18px;
+    }
+
+    .player-video {
+        width: 100%;
+        max-width: 100%;
+        aspect-ratio: 16 / 9;
+    }
+
+    #video {
+        width: 100%;
+        height: 100%;
+    }
+}
